@@ -1,0 +1,18 @@
+#actualTime, #settedTime {
+    font-weight: bold;
+    font-size: 100px;
+    color: black;
+    margin-top: 20px;
+}
+
+#countDown {
+    font-weight: bold;
+    font-size: 50px;
+    color: black;
+    margin-top: 20px;
+    text-align: right;
+}
+
+.container {
+    text-align: center;
+}
