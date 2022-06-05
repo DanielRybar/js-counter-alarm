@@ -11,6 +11,8 @@ let countDown;
 let countDownInterval;
 let isProgress;
 let progressBar;
+let wakeUp;
+let audio;
 
 const init = () => {
     actualTime = document.getElementById("actualTime");
@@ -22,6 +24,8 @@ const init = () => {
     countDownElement = document.getElementById("countDown");
     progressBar = document.getElementById("progressBar");
     isProgress = document.getElementById("isProgress");
+    wakeUp = document.getElementById("wakeUp");
+    audio = new Audio("./sounds/wakeUpSound.wav");
     setInterval(getActualTime, 100); // zavola funkci getActualTime kazdych 100 milisekund
 
     btn.disabled = true;
@@ -36,11 +40,15 @@ const init = () => {
         {
             settedTimeElement.innerHTML = "Nelze";
             countDownElement.innerHTML = "";
+            wakeUp.innerHTML = "";
+            isProgress.classList.remove("progress");
             progressBar.style.width = "0%";
+            clearInterval(countDownInterval);
         }
         else 
         {
             settedTimeElement.innerHTML = formatTime(settedTime);
+            wakeUp.innerHTML = "";
             countDownInterval = setInterval(getCountDown, 100);
         }
     });
@@ -111,7 +119,8 @@ const getCountDown = () => {
     }
     else if(countDown === 0) 
     {
-        alert("Budíček!");
+        audio.play();
+        wakeUp.innerHTML = "Budíček!";
         clearInterval(countDownInterval);
         countDownElement.innerHTML = "";
         progressBar.style.width = "0%";
