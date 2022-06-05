@@ -126,6 +126,14 @@ const getCountDown = () => {
         progressBar.style.width = "0%";
         isProgress.classList.remove("progress");
     }
+    else if(countDown < 0)
+    {
+        clearInterval(countDownInterval);
+        countDownElement.innerHTML = "";
+        wakeUp.innerHTML = "";
+        progressBar.style.width = "0%";
+        isProgress.classList.remove("progress");
+    }
 }
 
 const validateInput = (e, parameter, button) => {
